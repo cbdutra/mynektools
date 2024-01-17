@@ -1,0 +1,14 @@
+To compile use:
+module load intel/2023.0 mpi/2021.8.0 cmake
+
+To submit a job, use:
+sbatch PBSjob
+
+Limits of paid allocation:
+Maximum CPU: 264
+Maximum GPU: 11
+Maximum memory: 2640 Gb
+
+Requested resources in paid allocation should satisfy:
+nodes * ntasks-per-node <= 264
+nodes * ntasks-per-node * mem-per-cpu <= 2640 gb
