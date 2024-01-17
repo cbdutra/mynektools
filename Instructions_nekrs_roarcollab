@@ -1,0 +1,19 @@
+copy the nekRS-source folder located on /storage/group/ebm5351/default to your work folder
+go to the terminal and do:
+salloc --nodes=1 --ntasks=4 --mem=64GB --time=12:00:00 --gpus=1 --account=ebm5351_b_gpu --ntasks-per-node=4
+(wait for prompt)
+module purge
+module load openmpi/4.1.4-gcc-9.1.0
+module load cuda
+module load cmake
+go to the top level nekRS code directory and do:
+rm -rf build
+(that will ensure a clean build)
+CC=mpicc CXX=mpic++ FC=mpif77 ./nrsconfig -DCMAKE_INSTALL_PREFIX=/storage/work/cpd5488/nrs_cpd5488
+
+Then you can run interactively like this:
+cd /storage/work/cpd5488/nrs_cpd5488/examples/turbPipePeriodic
+export NEKRS_HOME=/storage/work/cpd5488/nrs_cpd5488
+
+Copy your nrsbmpi script to the folder you are going to run the simulation and do:
+./nrsbmpi turbPipe 1 01:00
